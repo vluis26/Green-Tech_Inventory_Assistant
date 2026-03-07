@@ -1,0 +1,137 @@
+[
+  {
+    "name": "Recycled Copy Paper",
+    "category": "office supplies",
+    "quantity": 500,
+    "unit": "sheets",
+    "expiry_date": null,
+    "daily_usage_rate": 50,
+    "threshold": 100
+  },
+  {
+    "name": "Refillable Whiteboard Markers",
+    "category": "office supplies",
+    "quantity": 12,
+    "unit": "markers",
+    "expiry_date": null,
+    "daily_usage_rate": 0.5,
+    "threshold": 4
+  },
+  {
+    "name": "Bamboo Ballpoint Pens",
+    "category": "office supplies",
+    "quantity": 30,
+    "unit": "pens",
+    "expiry_date": null,
+    "daily_usage_rate": 1,
+    "threshold": 10
+  },
+  {
+    "name": "Organic Fair-Trade Coffee",
+    "category": "food/beverage",
+    "quantity": 2,
+    "unit": "kg",
+    "expiry_date": "2026-09-01",
+    "daily_usage_rate": 0.2,
+    "threshold": 0.5
+  },
+  {
+    "name": "Compostable Cups",
+    "category": "food/beverage",
+    "quantity": 200,
+    "unit": "cups",
+    "expiry_date": "2027-01-15",
+    "daily_usage_rate": 20,
+    "threshold": 40
+  },
+  {
+    "name": "Oat Milk",
+    "category": "food/beverage",
+    "quantity": 6,
+    "unit": "liters",
+    "expiry_date": "2026-03-14",
+    "daily_usage_rate": 1,
+    "threshold": 2
+  },
+  {
+    "name": "Mixed Nuts & Dried Fruit",
+    "category": "food/beverage",
+    "quantity": 1.5,
+    "unit": "kg",
+    "expiry_date": "2026-06-30",
+    "daily_usage_rate": 0.15,
+    "threshold": 0.3
+  },
+  {
+    "name": "Eco-Certified All-Purpose Cleaner",
+    "category": "cleaning",
+    "quantity": 4,
+    "unit": "liters",
+    "expiry_date": "2027-05-01",
+    "daily_usage_rate": 0.3,
+    "threshold": 1
+  },
+  {
+    "name": "Reusable Microfibre Cloths",
+    "category": "cleaning",
+    "quantity": 20,
+    "unit": "cloths",
+    "expiry_date": null,
+    "daily_usage_rate": 0.2,
+    "threshold": 5
+  },
+  {
+    "name": "Plant-Based Hand Soap",
+    "category": "cleaning",
+    "quantity": 3,
+    "unit": "bottles",
+    "expiry_date": "2027-03-01",
+    "daily_usage_rate": 0.2,
+    "threshold": 1
+  },
+  {
+    "name": "Biodegradable Trash Bags",
+    "category": "cleaning",
+    "quantity": 50,
+    "unit": "bags",
+    "expiry_date": null,
+    "daily_usage_rate": 2,
+    "threshold": 10
+  },
+  {
+    "name": "Pipette Tips (recyclable)",
+    "category": "lab equipment",
+    "quantity": 1000,
+    "unit": "tips",
+    "expiry_date": null,
+    "daily_usage_rate": 80,
+    "threshold": 200
+  },
+  {
+    "name": "pH Buffer Solution",
+    "category": "lab equipment",
+    "quantity": 500,
+    "unit": "ml",
+    "expiry_date": "2026-08-20",
+    "daily_usage_rate": 10,
+    "threshold": 50
+  },
+  {
+    "name": "Nitrile Gloves (medium)",
+    "category": "lab equipment",
+    "quantity": 200,
+    "unit": "gloves",
+    "expiry_date": "2027-12-01",
+    "daily_usage_rate": 20,
+    "threshold": 40
+  },
+  {
+    "name": "Ethanol 70% (bioethanol)",
+    "category": "lab equipment",
+    "quantity": 2,
+    "unit": "liters",
+    "expiry_date": "2026-12-31",
+    "daily_usage_rate": 0.1,
+    "threshold": 0.5
+  }
+]
