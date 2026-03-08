@@ -28,7 +28,7 @@ cp .env.example .env
 
 ```bash
 cd backend
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate      # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 uvicorn main:app --reload --port 8000
@@ -40,23 +40,7 @@ The API will be available at `http://localhost:8000`. Interactive docs: `http://
 
 ```bash
 # From the project root, with the backend running:
-python - <<'EOF'
-import json, urllib.request, urllib.parse
-
-with open("sample_data.json") as f:
-    items = json.load(f)
-
-for item in items:
-    data = json.dumps(item).encode()
-    req = urllib.request.Request(
-        "http://localhost:8000/items",
-        data=data,
-        headers={"Content-Type": "application/json"},
-        method="POST"
-    )
-    urllib.request.urlopen(req)
-    print(f"Added: {item['name']}")
-EOF
+python3 load_sample_data.py
 ```
 
 ### 4. Frontend
