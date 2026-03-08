@@ -6,9 +6,10 @@ A web app for small businesses and non-profits to manage inventory sustainably â
 
 ## Submission Info
 
-**Candidate Name:** Luis Villa
-**Scenario Chosen:** Green-Tech Inventory Assistant
-**Estimated Time Spent:** 5 Hours
+- **Candidate Name:** Luis Villa
+- **Scenario Chosen:** Green-Tech Inventory Assistant
+- **Estimated Time Spent:** 5 Hours
+- **YouTube Link:** https://youtu.be/_9GWGrhIw5s
 
 ## Getting Started
 
