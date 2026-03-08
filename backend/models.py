@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field
 class ItemCreate(BaseModel):
     name: str
     category: str
-    quantity: float
+    quantity: float = Field(ge=0)
     unit: str
     expiry_date: Optional[str] = None
     daily_usage_rate: float = Field(ge=0)
@@ -15,11 +15,11 @@ class ItemCreate(BaseModel):
 class ItemUpdate(BaseModel):
     name: Optional[str] = None
     category: Optional[str] = None
-    quantity: Optional[float] = None
+    quantity: Optional[float] = Field(default=None, ge=0)
     unit: Optional[str] = None
     expiry_date: Optional[str] = None
-    daily_usage_rate: Optional[float] = None
-    threshold: Optional[float] = None
+    daily_usage_rate: Optional[float] = Field(default=None, ge=0)
+    threshold: Optional[float] = Field(default=None, ge=0)
 
 
 class Item(ItemCreate):
