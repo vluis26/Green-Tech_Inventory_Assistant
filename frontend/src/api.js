@@ -25,7 +25,18 @@ export const api = {
   updateItem: (id, data) => req(`/items/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
   deleteItem: (id) => req(`/items/${id}`, { method: 'DELETE' }),
   getDashboard: () => req('/dashboard'),
+  getWasteSavings: () => req('/dashboard/waste-savings'),
   predictReorder: (id) => req(`/items/${id}/predict`),
   getCategories: () => req('/categories'),
+  getScoreExplanation: (id) => req(`/items/${id}/score-explanation`),
   parseDescription: (description) => req('/items/parse-description', { method: 'POST', body: JSON.stringify({ description }) }),
+  importCsv: (file) => {
+    const form = new FormData()
+    form.append('file', file)
+    return fetch('/api/items/import', { method: 'POST', body: form }).then(async (res) => {
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.detail || 'Import failed')
+      return data
+    })
+  },
 }

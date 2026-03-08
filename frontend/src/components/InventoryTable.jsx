@@ -14,6 +14,9 @@ export default function InventoryTable() {
   const [modalItem, setModalItem] = useState(null)   // null=closed, {}=new, item=edit
   const [predictItem, setPredictItem] = useState(null)
   const [deleting, setDeleting] = useState(null)
+  const [importMsg, setImportMsg] = useState(null)   // {text, error}
+  const [importing, setImporting] = useState(false)
+  const [badgeRefreshKeys, setBadgeRefreshKeys] = useState({})  // {itemId: counter}
 
   const load = useCallback(() => {
     setLoading(true)
@@ -28,10 +31,30 @@ export default function InventoryTable() {
   async function handleSave(payload) {
     if (modalItem?.id) {
       await api.updateItem(modalItem.id, payload)
+      setBadgeRefreshKeys((prev) => ({ ...prev, [modalItem.id]: (prev[modalItem.id] ?? 0) + 1 }))
     } else {
       await api.createItem(payload)
     }
     load()
+  }
+
+  async function handleImport(e) {
+    const file = e.target.files?.[0]
+    e.target.value = ''           // reset so the same file can be re-selected
+    if (!file) return
+    setImporting(true)
+    setImportMsg(null)
+    try {
+      const result = await api.importCsv(file)
+      const msg = `${result.inserted} item${result.inserted !== 1 ? 's' : ''} imported successfully.`
+      const errs = result.errors?.length ? ` ${result.errors.length} row(s) skipped.` : ''
+      setImportMsg({ text: msg + errs, error: false })
+      load()
+    } catch (err) {
+      setImportMsg({ text: err.message, error: true })
+    } finally {
+      setImporting(false)
+    }
   }
 
   async function handleDelete(id) {
@@ -75,13 +98,27 @@ export default function InventoryTable() {
             {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
           </select>
         </div>
-        <button
-          onClick={() => setModalItem({})}
-          className="flex items-center gap-2 bg-green-600 text-white text-sm font-medium px-4 py-2 rounded-xl hover:bg-green-700 whitespace-nowrap"
-        >
-          <span className="text-lg leading-none">+</span> Add Item
-        </button>
+        <div className="flex gap-2">
+          <label className={`flex items-center gap-2 border border-gray-200 text-gray-600 text-sm font-medium px-4 py-2 rounded-xl hover:bg-gray-50 whitespace-nowrap cursor-pointer ${importing ? 'opacity-50 pointer-events-none' : ''}`}>
+            <input type="file" accept=".csv" className="hidden" onChange={handleImport} />
+            {importing ? 'Importing…' : 'Import CSV'}
+          </label>
+          <button
+            onClick={() => setModalItem({})}
+            className="flex items-center gap-2 bg-green-600 text-white text-sm font-medium px-4 py-2 rounded-xl hover:bg-green-700 whitespace-nowrap"
+          >
+            <span className="text-lg leading-none">+</span> Add Item
+          </button>
+        </div>
       </div>
+
+      {/* Import result banner */}
+      {importMsg && (
+        <div className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-sm ${importMsg.error ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`}>
+          <span>{importMsg.text}</span>
+          <button onClick={() => setImportMsg(null)} className="ml-4 text-lg leading-none opacity-60 hover:opacity-100">&times;</button>
+        </div>
+      )}
 
       {/* Table */}
       <div className="bg-white rounded-2xl shadow-sm overflow-x-auto">
@@ -119,7 +156,7 @@ export default function InventoryTable() {
                   </td>
                   <td className="px-4 py-3 text-right font-mono text-gray-500">{item.threshold}</td>
                   <td className="px-4 py-3 text-gray-500">{item.expiry_date || '—'}</td>
-                  <td className="px-4 py-3"><ScoreBadge score={item.sustainability_score} /></td>
+                  <td className="px-4 py-3"><ScoreBadge key={`${item.id}-${badgeRefreshKeys[item.id] ?? 0}`} score={item.sustainability_score} itemId={item.id} /></td>
                   <td className="px-5 py-3 text-right">
                     <div className="flex items-center justify-end gap-1">
                       <button

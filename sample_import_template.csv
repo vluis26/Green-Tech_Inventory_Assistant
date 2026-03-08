@@ -1,0 +1,5 @@
+name,category,quantity,unit,expiry_date,daily_usage_rate,threshold
+Recycled Copy Paper,office supplies,500,sheets,,50,100
+Organic Fair-Trade Coffee,food/beverage,2,kg,2026-09-01,0.2,0.5
+Eco-Certified All-Purpose Cleaner,cleaning,4,liters,2027-05-01,0.3,1
+Nitrile Gloves (medium),lab equipment,200,gloves,2027-12-01,20,40
